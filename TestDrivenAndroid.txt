@@ -2,3 +2,153 @@
 
 
 +====================== FUNDAMENTALS OF TDD ======================+
+
+    == WHY QUALITY IS IMP ==
+    -> Quality is free
+    -> Var devices, os, envs
+    -> PlayStore reflection of qual
+        -> Bad reviews don't go away (Avoid L-shaped and C-Shaped, go for Inverted L)
+        -> Successful apps put qual first
+
+    == SD TRIANGLE ==
+    Traditional : {TIME, FEATURE, MONEY} Pick any two
+    TDD : {CAPITAL (TIME/MONEY), FEATURES, QUALITY} Pick any one along with Quality
+        Works well with scrum
+        Minimises Tech Debt
+
+    == WHEN TESTING HAPPENS ==
+    WATERFALL
+        Analysis -> Design -> Implementation -> Test -> Rollout
+
+    TDD
+        Analysis -> Design -> Test -> Implementation -> Rollout
+
+    == WHY TEST FIRST ==
+        Qual too imp to save till the end
+        Define what qual code is before writing any
+            Stay Focused
+            Know when complete
+
++====================== TESTING TRIANGLE ======================+
+
+            = INSTRUMENTED =
+          ==== INTEGRATION ====
+       ========== UNIT ==========
+
+
++====================== BDD ======================+
+
+    == WHY BDD ==
+        Common lang along all disciplines : Business Analyst, Testers, Developers
+        A way to communicate
+
+    == History ==
+        Comes from TDD
+        Domain Specific Language (DSL)
+        Convert english language sentences to executable tests
+
+    == BDD Focus ==
+        Where
+        What to test
+        How
+        Name
+        Failure
+
+    == Principles ==
+    Unit test names are full sentences
+    As a [user] I want feature so that [benefit]
+    Acceptance criteria in Given -> When -> Then syntax
+
+    == Example ==
+    As a user I want to search for plants so that I can see plants that meet my criteria
+    Given : Plant Service Initialised
+    When : Search for Red
+    Then : Results contain RedBud
+
+    == Principles of BDD ==
+    Define Unit Test
+    Make Test fail
+    Implement feature
+    Verify that the implementation makes the test succeed
+
+
++====================== PROJ STRUCT ======================+
+
+test : Runs on Local JVM (More concerned with POJOs). Used for Unit Tests.
+androidTest : Runs on Android Environment. Used for Integration and Instrumentation Tests.
+
++====================== BEST PRACTICES - DTOS, Interfaces, Layers ======================+
+
+Class : Noun
+Variables : Adjectives
+Methods : Verbs
+
+Create an object from a class
+    -> Each class should do one thing, and do it well
+    -> Avoid very long classes (Long classes hard to test and reuse)
+    -> Avoid classes that blur layer
+
+Interfaces : Contracts what a class will do
+    -> Collection of method signatures
+    -> Can be implemented by multiple classes
+    -> Can be used as a var type, eg VariableType variableName = new ObjectType();
+
+Data Transfer Object
+    -> Noun class
+    -> POJO
+    -> Can easily transfer data across layers, without dependencies on those layers
+
+Traditional Layers
+    -> {OUTSIDE APP} Persistence Layer
+    -> Data Access (DAO)
+    -> Business Logic
+    -> UI
+    -> DTO
+
+    +==============+  +==============+  +==============+  +==============+
+    | SEARCH PLANT |  |              |  | SPECIMEN DAO |  |              |
+    |   ACTIVITY   |  |              |  +==============+  |              |
+    +==============+  |              |                    |              |
+                      |              |  +==============+  |              |
+    +==============+  |              |  |  PLANT DAO   |  |              |
+    |  ADD PLANTS  |  | PLANTSERVICE |  +==============+  |  PERSISTENCE |
+    |   ACTIVITY   |  |              |                    |              |
+    +==============+  |              |  +==============+  |              |
+                      |              |  |   USER DAO   |  |              |
+                      |              |  +==============+  |              |
+                      +==============+                    +==============+
+
+    +====================================================================+
+    |                           PLANT DTO                                |
+    +====================================================================+
+
++====================== WHY INTERFACES ======================+
+
+INTERFACE
+    -> Contract for a class
+    -> Contains method signatures
+    -> Can be implemented by multiple classes
+        eg, VarType varName = new ObjType();
+    -> Separates Vars and Obj Types
+    -> Polymorphism
+        Var types tell what a methods you are able to call, obj type tells you
+        what will happen when you call that method
+
+WHY USE INTERFACES
+    -> Flexible, future proof design
+    -> WebService to JsonService example, where if calls were made using interface, we can easily switch to diff objs
+        so long as both those objects implement the same interfaces
+
+    -> Parallel work across layers using stubs
+
+    -> Business Analyst : What a prog should do
+    -> Devs : Write Tests
+    -> QA, Devs, Autos : Run the tests
+
+DTOs AND INTERFACES
+    -> A DTO is often the return type of a fetch method and a parameter of an insert/update/delete methods
+    -> If using Strings too often, are you using OOD properly?
+
+
+
+
