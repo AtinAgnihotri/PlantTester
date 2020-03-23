@@ -1,6 +1,12 @@
 package com.agnihotri.planttester.dto;
 
+/**
+ *
+ */
 public class PlantDTO {
+    /**
+     *
+     */
     private int guid;
     private String genus;
     private String species;
@@ -16,8 +22,8 @@ public class PlantDTO {
     }
 
     public PlantDTO(){
-        this.guid = 0;
-        genus = species = cultivar = commonName = "";
+        guid = 0;
+        genus = species = cultivar = commonName ="";
     }
 
     public int getGuid() {
@@ -69,4 +75,6 @@ public class PlantDTO {
 
         return stringBuffer.toString();
     }
+
+
 }

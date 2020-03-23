@@ -150,5 +150,54 @@ DTOs AND INTERFACES
     -> If using Strings too often, are you using OOD properly?
 
 
++====================== MINIMISING IF TESTS ======================+
+
+WHAT IS AN IF TEST:
+    -> If test : A decision structure
+    -> Can be written in one class
+    -> Or, can simulate the same thing by using subclasses
+
+COMPLICATED IF TEST NOTORIOUSLY HARD TO COVER WITH TESTS
+    -> A sign that logic is in the wrong class
+    -> Less future-proof design
+    -> If tests make for longer classes
+    -> Smaller, concise classes are easier to test
+
+EXAMPLE
+
+                    CAR {move()}
+                          |
+        ========================================
+        |                 |                    |
+  GASOLINE {move()}   ELECTRIC {move()}   HYBRID {move()}
+
+
+    Instead of
+    Car{
+        move() {
+            if (GASOLINE) {
+                //gas move
+            } else if (ELECTRIC) {
+                // electric move
+            } else if (HYBRID) {
+                // hybrid move
+            }
+        }
+    }
+
++====================== JUNIT SYNTAX ======================+
+
+JUNIT FEATURES
+    -> Fixtures
+        --> Prerequisites setup and teardowns for running tests
+    -> Test Suites
+        --> Aggregate tests together
+    -> Test Runners
+        --> Runs JUnit Tests
+        --> Can aggregate successes and failures for summary
+
+
+
+
 
 
