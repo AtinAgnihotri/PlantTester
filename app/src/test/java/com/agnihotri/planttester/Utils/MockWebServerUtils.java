@@ -25,13 +25,13 @@ public class MockWebServerUtils {
 
             switch (request.getPath()) {
                 case "/api/plants?q=Redbud&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
-                    return new MockResponse().setBody(getRedBudJsonString());
+                    return new MockResponse().setBody(getRedBudJsonString()).setResponseCode(200);
                 case "/api/plants?q=hybrid%20oak&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
-                    return new MockResponse().setBody(getHybridOakJsonString());
+                    return new MockResponse().setBody(getHybridOakJsonString()).setResponseCode(200);
 //                case "api/plants?q=asdhagljkdfhbjgnn&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
 //                    return new MockResponse().setResponseCode(200).setBody("{\\\"info\\\":{\\\"name\":\"Lucas Albuquerque\",\"age\":\"21\",\"gender\":\"male\"}}");
             }
-            return new MockResponse().setBody(getGarbageValueJsonString());
+            return new MockResponse().setBody(getGarbageValueJsonString()).setResponseCode(200);
         }
     };
 

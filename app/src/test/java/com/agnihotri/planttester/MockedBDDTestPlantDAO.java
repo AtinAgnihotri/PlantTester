@@ -94,7 +94,7 @@ public class MockedBDDTestPlantDAO {
     private void thenVerifyZeroResults() {
         int size = plants.size();
 
-        assertEquals(size, 0);
+        assertEquals(0, size);
 
     }
 

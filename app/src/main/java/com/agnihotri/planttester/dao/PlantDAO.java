@@ -20,6 +20,7 @@ public class PlantDAO extends Activity implements IPlantDAO  {
 
     private NetworkDAO networkDAO;
     private String baseUrl = "https://trefle.io/api/plants";
+    String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
 
     public PlantDAO() {
         setNetworkDAO(new NetworkDAO());
@@ -35,7 +36,7 @@ public class PlantDAO extends Activity implements IPlantDAO  {
         filter = filter.replace(" ", "%20");
         ArrayList<PlantDTO> allPlants = new ArrayList<PlantDTO>();
 
-        String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
+
         String requestURI = baseUrl + "?q=" + filter + "&token=" + apiToken;
 
         String requestResponse = getNetworkDAO().fetch(requestURI);
@@ -78,6 +79,40 @@ public class PlantDAO extends Activity implements IPlantDAO  {
             }
         }
         return allPlants;
+    }
+
+    public PlantDTO getUniquePlant(int plantID) throws IOException, JSONException {
+        String requestURI = baseUrl + "/" + plantID + "?token=" + apiToken;
+
+        String requestResponse = getNetworkDAO().fetch(requestURI);
+
+        // Entire JSON
+        JSONObject plantJson = new JSONObject(requestResponse);
+
+        String scientificName = plantJson.getString("scientific_name");
+        int id = plantJson.getInt("id");
+        String link = plantJson.getString("link");
+        String slug = plantJson.getString("slug");
+        String[] slugTokens = slug.split("-");
+        String genus = slugTokens[0];
+        String species = slugTokens[1];
+        //            String cultivar = jsonObject.getString("cultivar");
+
+        Object commonNameObj = plantJson.get("common_name");
+        String commonName = commonNameObj.toString();
+
+        // now, let's put them into a PlantDTO.
+        PlantDTO plantDTO = new PlantDTO();
+        plantDTO.setGuid(id);
+        plantDTO.setGenus(genus);
+        plantDTO.setSpecies(species);
+        //            plantDTO.setCultivar(cultivar);
+        plantDTO.setCommonName(commonName);
+        plantDTO.setLink(link);
+        plantDTO.setSlug(slug);
+        plantDTO.setScientificName(scientificName);
+
+        return plantDTO;
     }
 
     @Override

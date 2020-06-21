@@ -34,6 +34,19 @@ public class BBDTestPlantDAO {
         fetchForFilterShouldReturnZeroResults("asdhagljkdfhbjgnn");
     }
 
+    @Test
+    public void testPlantDAO_fetchShouldReturnGenusQuercusForQuercus() throws IOException, JSONException {
+        givenPlantDAOIsInitialised();
+        whenSearchForFilter("Quercus");
+        thenVerifyAllGenusAreQuercus();
+    }
+
+    private void thenVerifyAllGenusAreQuercus() {
+        for (PlantDTO plant : plants){
+            assertEquals("quercus", plant.getGenus().toLowerCase());
+        }
+    }
+
     private void fetchForFilterShouldReturnAtLeastOneGenusSpecies(String filter, String genus, String species) throws IOException, JSONException {
         givenPlantDAOIsInitialised();
         whenSearchForFilter(filter);
@@ -71,7 +84,7 @@ public class BBDTestPlantDAO {
     private void thenVerifyZeroResults() {
         int size = plants.size();
 
-        assertEquals(size, 0);
+        assertEquals(0, size);
 
     }
 
