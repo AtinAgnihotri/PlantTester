@@ -400,6 +400,48 @@ Fail
     -> Can just let the exception throw back, as they will cause the test to fail automatically
     -> Can add a string to it, describing why it failed
 
++====================== History of Asserts ======================+
+
+Version 1 : assert(item1.equals(item2))
+    -> Somewhat inflexible and difficult to read
+Version 2 : assertEquals(item1, item2)
+    -> How do we handle capitalization, whitespaces, partial string matches, etc
+    -> This is where Hamcrest plays well
+Version 3 : assertThat(actualValue, is(equalTo(expectedValue)))
+    -> Flexible with matchers
+    -> Easy to modify with more or less restrictive conditions
+    -> Naturally readable
+
++====================== Hamcrest ======================+
+
+-> Based on matchers
+    -> Matchers can handle complex assertions
+    -> Example : Regex
+    -> Many built in matchers
+-> Create matching rules declaratively
+-> Complex assertions written in declarative (versus procedural) style
+-> Works well with collections
+-> Better error messages (shows expected and equals)
+-> Integrated with JUnit4
+
++====================== Some Built-In Hamcrest Matchers ======================+
+-> Core Matchers
+    -> is, not
+    -> allOf
+    -> anyOf
+    -> equalTo
+    -> nullValue, notNullValue
+    -> containsString, endsWith, startsWith
+-> Additional matchers for collections
+    -> IsCollectionWithSize
+    -> IsCollectionContaining
+    -> IsEmptyCollection
+-> Several more matchers for beans, comparisons, and so on
+
+
+
+
+
 
 
 

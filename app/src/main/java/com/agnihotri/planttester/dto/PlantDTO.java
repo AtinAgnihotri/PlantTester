@@ -1,5 +1,7 @@
 package com.agnihotri.planttester.dto;
 
+import androidx.annotation.Nullable;
+
 /**
  *
  */
@@ -102,5 +104,16 @@ public class PlantDTO {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        PlantDTO otherPlant = (PlantDTO) obj;
+        boolean genusMatches = (genus == otherPlant.getGenus());
+        boolean speciesMatches = (species == otherPlant.getSpecies());
+        boolean idMatches = (guid == otherPlant.getGuid());
+        boolean commonNameMatches = (commonName == otherPlant.getCommonName());
+        return (genusMatches && speciesMatches && idMatches && commonNameMatches);
     }
 }

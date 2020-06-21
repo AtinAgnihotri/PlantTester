@@ -32,6 +32,8 @@ dependencies {
     testImplementation 'org.json:json:20200518'
     testImplementation 'org.mockito:mockito-core:3.3.3'
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    androidTestImplementation 'org.hamcrest:hamcrest:2.2'
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
     androidTestImplementation 'org.mockito:mockito-core:3.3.3'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

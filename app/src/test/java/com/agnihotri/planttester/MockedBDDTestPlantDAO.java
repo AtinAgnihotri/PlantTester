@@ -5,6 +5,7 @@ import com.agnihotri.planttester.dao.IPlantDAO;
 import com.agnihotri.planttester.dao.PlantDAO;
 import com.agnihotri.planttester.dto.PlantDTO;
 
+import org.hamcrest.beans.HasPropertyWithValue;
 import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
@@ -16,23 +17,36 @@ import java.util.List;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockWebServer;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-public class MockedBDDTestPlantDAO {
+//  Hamcrest Imports
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
+public class MockedBDDTestPlantDAO {
+    // region Variables
     MockWebServer server;
     HttpUrl baseUrl;
     IPlantDAO plantDAO;
     List<PlantDTO> plants;
+    // endregion
 
+    // region Setup
     @Before
     public void setupMockedTests() throws IOException {
         server = MockWebServerUtils.startNewServer();
         baseUrl = server.url("api/plants");
     }
+    // endregion
 
+    // region Tests
     @Test
     public void testMockWebServerIsWorking() throws IOException, JSONException, InterruptedException {
         IPlantDAO plantDAO = new PlantDAO(baseUrl.toString());
@@ -56,7 +70,9 @@ public class MockedBDDTestPlantDAO {
     public void testPlantDAO_fetchShouldReturnZeroResultsForGarbageValue() throws IOException, JSONException{
         fetchForFilterShouldReturnZeroResults("asdhagljkdfhbjgnn");
     }
+    // endregion
 
+    // region TestHelpers
     private void fetchForFilterShouldReturnAtLeastOneGenusSpecies(String filter, String genus, String species) throws IOException, JSONException {//, InterruptedException {
         givenPlantDAOIsInitialised();
         whenSearchForFilter(filter);
@@ -68,40 +84,36 @@ public class MockedBDDTestPlantDAO {
         whenSearchForFilter(filter);
         thenVerifyZeroResults();
     }
+    // endregion
 
+    // region Givens
     private void givenPlantDAOIsInitialised() {
         plantDAO = new PlantDAO(baseUrl.toString());
     }
+    // endregion
 
+    // region Whens
     private void whenSearchForFilter(String filter) throws IOException, JSONException {
 
         plants = plantDAO.fetchPlants(filter);
     }
+    // endregion
 
+    // region Thens
     private void thenVerifyAtLeastOneGenusSpecies(String testGenus, String testSpecies) {
-        boolean genusSpeciesFound = false;
-        for (PlantDTO plant : plants) {
-            System.out.println(plant.getGenus().toLowerCase() + " : " + plant.getSpecies().toLowerCase());
-            if (plant.getGenus().toLowerCase().contains(testGenus) && plant.getSpecies().toLowerCase().contains(testSpecies)){
-                genusSpeciesFound = true;
-            }
-        }
-
-        assertTrue(genusSpeciesFound);
-
+        assertThat(plants, anyOf(hasItem(HasPropertyWithValue.<PlantDTO>hasProperty("genus", containsString(testGenus)))));
     }
 
     private void thenVerifyZeroResults() {
-        int size = plants.size();
-
-        assertEquals(0, size);
-
+        assertThat(plants, empty());
     }
+    // endregion
 
-
+    // region Teardown
     @After
     public void tearDownMockedTests() throws IOException {
         server.shutdown();
     }
+    // endregion
 
 }
