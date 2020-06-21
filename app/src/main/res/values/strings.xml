@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PlantTester</string>
+    <string name="api_token">YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09</string>
+    <string name="api_url">https://trefle.io/api/plants</string>
 </resources>

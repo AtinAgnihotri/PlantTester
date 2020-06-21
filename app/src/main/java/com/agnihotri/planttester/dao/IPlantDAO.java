@@ -2,6 +2,9 @@ package com.agnihotri.planttester.dao;
 
 import com.agnihotri.planttester.dto.PlantDTO;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,6 +18,10 @@ public interface IPlantDAO {
      * @param filter text to use as a filter.
      * @return List of Plants that contain filter text in genus, species, cultivar or common name.
      */
-    public List<PlantDTO> fetchPlants(String filter);
+    public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException;
+
+    NetworkDAO getNetworkDAO();
+
+    void setNetworkDAO(NetworkDAO networkDAO);
 
 }

@@ -11,6 +11,9 @@ import com.agnihotri.planttester.dto.PlantDTO;
 import com.agnihotri.planttester.service.IPlantService;
 import com.agnihotri.planttester.service.PlantService;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 public class SearchPlantsActivity extends AppCompatActivity {
@@ -26,7 +29,7 @@ public class SearchPlantsActivity extends AppCompatActivity {
         actPlantName = findViewById(R.id.actPlantName);
     }
 
-    public void searchPlants(View v){
+    public void searchPlants(View v) throws IOException, JSONException {
         // TODO Populate list view with plants
         List<PlantDTO> plants = plantService.fetchPlants(actPlantName.getText().toString());
 

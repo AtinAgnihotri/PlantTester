@@ -276,3 +276,96 @@ See DesignForTestUML for reference
 
 NetworkDAO might have a URL or URI (Univeral Resource Link/Indicator)
 
++====================== History of BDD ======================+
+
+-> Emerged from TDD
+    -> Advantages of TDD and OOD with a ubiquitous lang
+        -> BA, QA, Developers communicate and understand each other
+        -> From specification to example
+        -> Autonomous teams break down organizational boundaries
+-> Attributed to Dan North
+
++====================== Core Principles of BDD ======================+
+
+ItsAllBehavior : Business and Technology should refer to the same system in the same way.
+WheresTheBusinessValue : Any system should have an identified, verifiable value to business.
+EnoughIsEnough : Up-front analysis, design, and planning all have diminishing returns.
+
+Fits well with Scrum even though not a part of it
+
++====================== BDD Focus : 5Ws ======================+
+
+Where to start
+What to test
+How much to test
+What to name the test
+Why a test fails
+
++====================== BDD's Relation to Specifications ======================+
+
+BD is an integral part of technical documentation
+    -> Business Analyst (BA) writes behaviors
+        -> EG : As a [user] I want to [action] so  that [outcome]
+Developers ask questions
+These become examples
+    -> Given [context/assumption], When [action], Then [expected result]
+    -> Use words that have meaning to everyone
+    -> Prefer the term "example" over "test"
+    -> Unit test methods as sentences, usually beginning with verbs (Verbose method names)
+Everyone has a vested interest in quality
+
++====================== Example of Design Doc (GIVEN,WHEN,THEN) ======================+
+        === REQIUREMENT 100.0 : SEARCH FOR PLANTS ===
+SCENARIO
+    As a user interested in plants, I want to be able to search plants based on any part of the name : genus, species, cultivar or
+    common name.
+
+DEPENDENCIES
+    Plant search data are available and accessible
+
+ASSUMPTIONS
+    Scientific names are stated in Latin
+    Common names are stated in English
+
+EXAMPLES
+    1.1
+        GIVEN a feed of plant data is available
+        WHEN I search for "RedBud"
+        THEN I should recieve at least one result with these attributes
+            Genus : Cercis
+            Species : Canadensis
+            Common Name : Eastern Redbud
+    1.2
+        GIVEN a feed of plant data is available
+        WHEN I search for "Hybrid Oak"
+        THEN I should recieve at least one result with these attributes
+            Genus : Quercus
+            Species : ×benderi
+            Common Name : Hybrid Oak
+        AND I should recieve at least one result with these attributes
+            Genus : Quercus
+            Species : ×benderi
+            Common Name : Hybrid Oak
+    1.3
+        GIVEN a feed of plant data is available
+        WHEN I search for "asdhagljkdfhbjgnn"
+        THEN I should recieve zero results
+
+    /*
+    Common givens among examples are good so we can create common subassemblies for mutliple
+    tests.
+    */
+
+SIGNOFF
+
+REVISION HISTORY
+
++====================== Example of Design Doc (GIVEN,WHEN,THEN) ======================+
+
+
+
+
+
+
+
+

@@ -12,4 +12,14 @@ public class PlantJsonDAO implements IPlantDAO {
     public List<PlantDTO> fetchPlants(String filter) {
         return null;
     }
+
+    @Override
+    public NetworkDAO getNetworkDAO() {
+        return null;
+    }
+
+    @Override
+    public void setNetworkDAO(NetworkDAO networkDAO) {
+
+    }
 }

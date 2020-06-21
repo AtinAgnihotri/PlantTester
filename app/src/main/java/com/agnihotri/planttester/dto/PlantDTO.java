@@ -12,6 +12,9 @@ public class PlantDTO {
     private String species;
     private String cultivar;
     private String commonName;
+    private String scientificName;
+    private String link;
+    private String slug;
 
     public PlantDTO(int guid, String genus, String species, String cultivar, String commonName){
         this.guid = guid;
@@ -77,4 +80,27 @@ public class PlantDTO {
     }
 
 
+    public String getScientificName() {
+        return scientificName;
+    }
+
+    public void setScientificName(String scientificName) {
+        this.scientificName = scientificName;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 }

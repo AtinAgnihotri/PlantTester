@@ -1,5 +1,7 @@
 package com.agnihotri.planttester;
 
+import android.content.res.Resources;
+
 import com.agnihotri.planttester.dao.NetworkDAO;
 
 import org.junit.Before;
@@ -22,6 +24,7 @@ public class TestNetworkDAO {
     @Test
     public void testNetworkDAO_fetchShouldSucceedWhenGivenValidURI() throws IOException {
 //        String testURI = "http://localhost:8089/";
+//        Resources resources = getResources();
         String plantToken = "RedBud";
         String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
         String testURI = "https://trefle.io/api/plants?q=" + plantToken + "&token=" + apiToken;
