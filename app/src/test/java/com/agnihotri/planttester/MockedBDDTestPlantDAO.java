@@ -38,8 +38,8 @@ public class MockedBDDTestPlantDAO {
         IPlantDAO plantDAO = new PlantDAO(baseUrl.toString());
         List<PlantDTO> plants = plantDAO.fetchPlants("Redbud");
         assertNotEquals(plants.size(), 0);
-        // MockWebServerUtils.processPlantRequests(server);
     }
+
     @Test
     public void testPlantDAO_fetchShouldReturnResultsForRedbud() throws IOException, JSONException, InterruptedException {
         fetchForFilterShouldReturnAtLeastOneGenusSpecies("Redbud", "cercis", "canadensis");
@@ -80,7 +80,6 @@ public class MockedBDDTestPlantDAO {
 
     private void thenVerifyAtLeastOneGenusSpecies(String testGenus, String testSpecies) {
         boolean genusSpeciesFound = false;
-//        MockWebServerUtils.processPlantRequests(server);
         for (PlantDTO plant : plants) {
             System.out.println(plant.getGenus().toLowerCase() + " : " + plant.getSpecies().toLowerCase());
             if (plant.getGenus().toLowerCase().contains(testGenus) && plant.getSpecies().toLowerCase().contains(testSpecies)){

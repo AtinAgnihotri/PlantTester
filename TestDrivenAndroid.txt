@@ -381,6 +381,26 @@ assertNull, assertNotNull
     -> assertNotNull
         Verifies object is not null
 
+assertSame
+    Verify that two objects are the same object in memory (occupy same space in memory), not just have equal values
+
+assertTrue, assertFalse
+    Verify whether a boolean is true or false
+
+assertThat
+    -> New in JUnit 4.0
+    -> Allows for hamcrest library comparisions
+    -> assertThat(redbudPlant, is(equalTo(resultPlant)))
+
+Fail
+    -> Forces a test to fail
+    -> Does not verify anything
+    -> Useful if you have reached a point in code that should not be reached
+    -> Can use this in a catch block
+    -> Can just let the exception throw back, as they will cause the test to fail automatically
+    -> Can add a string to it, describing why it failed
+
+
 
 
 

@@ -30,12 +30,16 @@ public class SearchPlantsActivity extends AppCompatActivity {
     }
 
     public void searchPlants(View v) throws IOException, JSONException {
-        // TODO Populate list view with plants
-        List<PlantDTO> plants = plantService.fetchPlants(actPlantName.getText().toString());
+        try {
+            // TODO Populate list view with plants
+            List<PlantDTO> plants = plantService.fetchPlants(actPlantName.getText().toString());
 
-        for (PlantDTO plant : plants){
-            String showText = plant.toString();
-            Toast.makeText(this, showText, Toast.LENGTH_LONG).show();
+            for (PlantDTO plant : plants) {
+                String showText = plant.toString();
+                Toast.makeText(this, showText, Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
     }
 }

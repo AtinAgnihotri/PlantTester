@@ -1,6 +1,7 @@
 package com.agnihotri.planttester.service;
 
 import com.agnihotri.planttester.dao.IPlantDAO;
+import com.agnihotri.planttester.dao.PlantDAO;
 import com.agnihotri.planttester.dao.PlantDAOStub;
 import com.agnihotri.planttester.dao.PlantJsonDAO;
 import com.agnihotri.planttester.dto.PlantDTO;
@@ -17,6 +18,7 @@ public class PlantService implements IPlantService {
     public PlantService(){
 //        plantDAO = new PlantJsonDAO();
         plantDAO = new PlantDAOStub();
+//        plantDAO = new PlantDAO();
     }
 
     @Override
