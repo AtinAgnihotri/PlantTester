@@ -10,6 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'org.hamcrest:hamcrest:2.2'
+        }
     }
     buildTypes {
         release {
@@ -43,3 +50,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:truth:1.0.0'
 
 }
+
