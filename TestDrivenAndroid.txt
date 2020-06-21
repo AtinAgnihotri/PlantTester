@@ -360,7 +360,28 @@ SIGNOFF
 
 REVISION HISTORY
 
-+====================== Example of Design Doc (GIVEN,WHEN,THEN) ======================+
++====================== Asserts ======================+
+
+assertEquals
+    -> Verifies that two items are equal
+    -> Overloaded for many primitive types (int, long, float, double), plus String
+    -> Doubles and floats overloads include a Delta variable for acceptable diff to assist in floating point arithmetic
+
+assertNotEquals
+    similar to assertEquals but test true if the results are not equal
+
+assertNull, assertNotNull
+    -> Null reference : Is there an object assigned to this variable
+       -> PlantDTO plant = null; // null ref
+       -> PlantDTO plant = new PlantDTO(); // not a null ref
+    -> assertNull
+        Verifies that given object is null
+            -> Caution! : try not to get in a habit of returning null from a method especially if it is the result of catching an
+            exception.
+    -> assertNotNull
+        Verifies object is not null
+
+
 
 
 

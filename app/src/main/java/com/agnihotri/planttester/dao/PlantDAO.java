@@ -19,9 +19,15 @@ import java.util.List;
 public class PlantDAO extends Activity implements IPlantDAO  {
 
     private NetworkDAO networkDAO;
+    private String baseUrl = "https://trefle.io/api/plants";
 
     public PlantDAO() {
         setNetworkDAO(new NetworkDAO());
+    }
+
+    public PlantDAO(String url) {
+        this();
+        baseUrl = url;
     }
 
     @Override
@@ -30,7 +36,7 @@ public class PlantDAO extends Activity implements IPlantDAO  {
         ArrayList<PlantDTO> allPlants = new ArrayList<PlantDTO>();
 
         String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
-        String requestURI = "https://trefle.io/api/plants?q=" + filter + "&token=" + apiToken;
+        String requestURI = baseUrl + "?q=" + filter + "&token=" + apiToken;
 
         String requestResponse = getNetworkDAO().fetch(requestURI);
 
