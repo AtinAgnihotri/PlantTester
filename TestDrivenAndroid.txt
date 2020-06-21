@@ -196,8 +196,83 @@ JUNIT FEATURES
         --> Runs JUnit Tests
         --> Can aggregate successes and failures for summary
 
++====================== JUNIT FEATURES ======================+
 
+JUNIT TEST CLASSES
+    -> Classes we're writing to verify that the tests pass
+    -> Assert : Contains assert method
+    -> TestCase : Defines fixtures to run tests
+    -> TestResults : Aggregates the results of running the tests
 
++====================== TESTCASE ======================+
 
+    -> setup()
+    -> teardown()
+    -> Other methods
+        --> run()
+        --> get/setName()
+        --> createResult()
+        --> countTestCases()
 
++====================== @Test ======================+
+
+@Test
+    -> Indicates that this method should be evaluated by JUnit
+    -> Very frequently used
+    -> Replaces testXxx() syntax of JUnit3
+    -> @Test(timeout = ms): Time to wait, in milliseconds before declaring the test failed
+    -> @Test(expected = ClassCastException.class) : When throwing an Exception for the test, successful result is
+    expected
+
++====================== @Ignore ======================+
+
+@Ignore
+    -> Ignore this class for testing
+    -> Use temporarily
+    -> If a class is failing an entire unit test suite for a known reason, and you need a build to run
+
++====================== @Before ======================+
+
+@Before
+    -> Runs this before each test method
+    -> Good for initialisations required for each test
+
+@BeforeClass
+    -> Run once before any method in test class runs (only runs one time)
+
++====================== @After ======================+
+
+@After
+    -> Run this after each test method
+    -> Good for de-initialisation after each test
+    -> Release any resources or memory usage
+
+@AfterClass
+    -> Run once, after all tests have finished
+
++====================== @RunWith and @Suite ======================+
+
+@RunWith(Suite.class)
+    -> Indicate that we want to run a suite of classes
+
+@RunWith(Parameterized.class)
+    -> Data-driven parameterized class
+
+@RunWith(MockitoJUnitRunner.class):
+    -> Initialise annotation-based @Mock Objects
+
+@Suite.SuiteClasses({}):
+    -> A comma-separated list of test classes to run
+
++====================== Design for Test ======================+
+
+How designing for test makes for better overall design
+    -> Componentize Classes
+    -> Class Diagram
+
+Easier to see large number of small classes than small number of large classes
+
+See DesignForTestUML for reference
+
+NetworkDAO might have a URL or URI (Univeral Resource Link/Indicator)
 
