@@ -19,16 +19,16 @@ import java.util.List;
 public class PlantDAO extends Activity implements IPlantDAO  {
 
     private NetworkDAO networkDAO;
-    private String baseUrl = "https://trefle.io/api/plants";
+    private String baseUrl;
     String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
 
     public PlantDAO() {
-        setNetworkDAO(new NetworkDAO());
+        this("https://trefle.io/api/plants");
     }
 
     public PlantDAO(String url) {
-        this();
         baseUrl = url;
+        setNetworkDAO(new NetworkDAO());
     }
 
     @Override

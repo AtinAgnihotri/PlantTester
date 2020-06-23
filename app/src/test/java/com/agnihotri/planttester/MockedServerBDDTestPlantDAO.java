@@ -30,7 +30,12 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
-public class MockedBDDTestPlantDAO {
+public class MockedServerBDDTestPlantDAO {
+    /**
+     * Where we run the same BDD Unit test, but the responses are mocked using MockWebserver
+     */
+
+
     // region Variables
     MockWebServer server;
     HttpUrl baseUrl;

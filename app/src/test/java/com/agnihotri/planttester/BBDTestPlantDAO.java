@@ -1,6 +1,9 @@
 package com.agnihotri.planttester;
 
+import com.agnihotri.planttester.Utils.MockJsonStrings;
+import com.agnihotri.planttester.Utils.MockedUrls;
 import com.agnihotri.planttester.dao.IPlantDAO;
+import com.agnihotri.planttester.dao.NetworkDAO;
 import com.agnihotri.planttester.dao.PlantDAO;
 import com.agnihotri.planttester.dto.PlantDTO;
 
@@ -8,7 +11,12 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.beans.HasPropertyWithValue;
 import org.hamcrest.core.AnyOf;
 import org.json.JSONException;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,14 +34,29 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
-
+import static org.mockito.Mockito.when;
 
 
 public class BBDTestPlantDAO {
+    /**
+     * Behavior testing PlantDAO, with the network access mocked by mocking NetworkDAO
+     */
     // region Variables
     IPlantDAO plantDAO;
     List<PlantDTO> plants;
+    @Mock NetworkDAO networkDAO;
     // endregion
+
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+
+    @Before
+    public void initialiseMocks() throws IOException {
+        when(networkDAO.fetch(MockedUrls.REDBUD_QUERRY)).thenReturn(MockJsonStrings.REDBUD_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.HYBRID_OAK_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.GARBAGE_VALUE_QUERRY)).thenReturn(MockJsonStrings.GARBAGE_VALUE_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.QUERCUS_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
+    }
 
     // region Tests
     @Test
@@ -77,6 +100,10 @@ public class BBDTestPlantDAO {
     // region Givens
     private void givenPlantDAOIsInitialised() {
         plantDAO = new PlantDAO();
+
+        // Mocking NetworkDAO through Mockito
+        plantDAO.setNetworkDAO(networkDAO);
+
     }
     // endregion
 

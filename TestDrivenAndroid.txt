@@ -439,9 +439,83 @@ Version 3 : assertThat(actualValue, is(equalTo(expectedValue)))
 -> Several more matchers for beans, comparisons, and so on
 
 
++====================== What is Mockito ======================+
 
+-> Mock out dependencies
+    -> Remove side effects from external elements
+    -> Example: test our PlantDAO without requiring network access and the NetworkDAO
+    -> Similar to the stub class that we created
+    -> Simplifies writing our test
+-> Can mock Android framework classes. Otherwise, unit tests will throw an exception
+-> For a data provider class (DAO), create predictable set of data against which to write tests
+-> Not a part of JUnit4, but works well with it
+-> Other considerations:
+    -> Cannot mock anonymous, primitive and final types
+        -> But TDD drives good design
+        -> Are anonymous inner classes good design?
 
++====================== What is Mockito ======================+
 
+-> A stand-in for an actual object
+-> Define the type of object to mock
+    -> Example : NetworkDAO networkDAO = mock(NetworkDAO.class);
+        -> No constructor called
+        -> How does it know the return type (type tells what to return)
+        -> Generic magic
+    -> Can use @Mock annotation instead
+        -> If using @Mock, you must have @Rule public MockitoRule rule = MockitoJUnit.rule(); to instantiate @Mock objects
+-> The concept is similar to the PlantDAOStub we created earlier
+
++====================== Mocking methods on an Object ======================+
+
+-> Syntax
+    -> when(mockedObject.method(parameters)).thenReturn(value);
+-> Eg :
+    -> when(networkDAO.fetch("Redbud").thenReturn("JSON");
+    -> when(networkDAO.fetch(any(String.class)).thenReturn("JSON");
+-> Variants
+    -> Several any() variants, including anyInt()
+    -> Can throw an exception instead of return : thenThrow(new IOException());
+
++====================== Mocking methods on an Object ======================+
+
+-> Use Mockito to create validations of unit tests
+    -> Mockito keeps a count of each method called, and with which parameters
+    -> verify(object, number of times invoked).method(parameters);
+    -> Eg :
+        -> verify(plantDAO, times(1)).fetchPlants("Redbud");
+        -> verify(plantDAO, atLeast(3)).fetchPlants(any(String.class));
+        -> verify(networkDAO, atLeastOnce()).fetch("www.wikipedia.org");
+        -> Variants: atMost(int), atLeastOnce(), atLeast(int), never(), and so on
+    -> Behavior testing: Verify call to the method and its parameters, not what the method does
+
++====================== Mock Alternative - Spy ======================+
+
+-> @Spy/Spy(): Uses real methods, but can still stub and verify methods
+    -> Use the real object, unless you mock it
+    -> Mocked methods syntax differs slightly, to avoid invoking the actual method and getting an exception in return
+        -> doReturn(value).when(spiedObject).method(arguments);
+
++====================== @InjectMocks ======================+
+
+-> @InjectMocks: dependency inject for any constructor, method or fields
+    -> Attribute/field level annotation
+    -> Uses any type annotated with @Spy or @Mock
+
++====================== Advanced Mocking ======================+
+
+-> Answer
+-> ReturnValue
+-> MockSettings
+-> BDDMockito
+-> @RunWith(MockitoJUnitRunner.class)
+
++====================== Mocking Best Practices ======================+
+
+Mockito Recommends :
+    -> Don't mock classes you don't own (Leeway around Android classes)
+    -> Don't mock value object/DTO
+    -> Don't mock everything
 
 
 
