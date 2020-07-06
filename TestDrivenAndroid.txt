@@ -517,10 +517,148 @@ Mockito Recommends :
     -> Don't mock value object/DTO
     -> Don't mock everything
 
++====================== Technical Debt ======================+
 
+-> Technical Debt: Technical Debt is a concept in programming that reflects the extra development work that arises when code
+    that is easy to implement in the short run is used instead of applying the best overall solution
+-> When you continue to build on top of bad quality code, you're building on technical debt
 
++====================== What causes Technical Debt? ======================+
 
+-> Lack of loosely coupled components
+    -> TDD is good design. Eg : refactoring NetworkDAO out of PlantDAO
+-> Lack of testing
+-> Lack of communication/collaboration
+-> Parallel/isolated development that needs to be merged
+-> Delayed or inadequate refactoring
+-> Ignoring/not knowing standards
+    -> DTO getters and setters
+    -> Strings versus DTOs
+-> Timing, last minute changes
+-> Inadequate technical leadership or direction
+-> Unmanaged scoping
 
++====================== Technical Debt Consequences ======================+
+
+-> Like interest payments, many side effects of technical debt can grow exponentially,
+    if not addressed quickly
+    -> More time fixing bugs than working on new features
+    -> Quality issues
+    -> Bloated Codebase
+    -> Miss deadlines
+    -> Higher learning curve
+    -> Bad PlayStore reviews
+-> Technical Debt and the interest on the debt must eventually be paid off. That sum total can grow exponentially
+
++====================== Brandan's Software Developement Triangle ======================+
+
+Pick any two but one of the two must be quality
+       Time
+     /      \
+    /        \
+   /          \
+Feature --- Quality
+
++====================== Why Code Coverage ======================+
+
+-> Shows what percentage of your code is covered by unit test
+-> A view of technical debt
+    -> Code coverage should always increase, never decrease, or you are increasing technical debt
+        -> Add unit test
+        -> Remove untested classes
+
++====================== See Code Coverage ======================+
+
+-> To view code coverage:
+    -> Right click on Unit Test, choose "Run [Unit Test] with coverage"
+    -> The coverage will appear in the source code package that matches the unit test
+-> The location of the cursor during the unit test determines what coverage is considered
+    -> To see what a class covers, put the cursor in the class declaration {}
+    -> To see what a method covers, put the cursor in the method declaration {}
+    -> To see what a line covers, put the cursor on that line
+
++====================== Why Automatically Run Tests? ======================+
+
+-> So that you don;t forget to write tests.
+    -> Some projects being with good intentions of 100% coverage
+    -> Forget to run our tests, see the results and update them, they will quickly become old and out of date.
+    -> Can be tempted to disregard them.
+    -> Remember before automatic compilation, when we had to press a button to see compile errors.
+-> See the test failures in our code
+    -> Embodies the TDD goal of writing a failing test, then complete the implementation to make the failing test pass
+
++====================== Setup In Android Studio ======================+
+
+-> Run > Edit Configurations > App > Before Launch, +
+    -> Add any unit tests you want to run
+    -> An excellent use of @Suite and @RunWith to run multiple tests
+        @RunWith(Suite.Class)
+        @SuiteClasses({
+        BDDPlantDAOTest.class,
+        TestNetworkDAO.class,
+        })
+
++====================== What Are Instrumentation Tests ======================+
+
+-> Functional tests
+    -> Validate that I can search for a plant, find plants at a location
+    -> Automate user interactions with the app on the device
+
+-> Integration Tests
+    -> Validate all our layers (UI, Service and DAO) work together properly
+
++====================== Why Intrumentation Test ======================+
+
+-> Reduce the need for mocked code
+    -> Use mockito to mock android framework classes in classic unit tests, but use MockWebserver and
+    MockLocationProvider and other such stuff to create hermetic test without mocking Android Framework classes in
+    codebase.
+-> Test features based on app lifecycle
+
++====================== Why Intrumentation Test ======================+
+
+What do instrumentation tests have in common?
+    -> Test that run on an actual device/emulator
+    -> Have access to the details fo the Android app, like Context
+    -> Requires framework components, like Parcelable
+    -> Send broadcasts to test BroadcastReceivers
+
++====================== Where Are Intrumentation Test ======================+
+
+-> Located in module-name/src/androidTest/java folder
+-> As opposed to general unit tests, which are in module-name/src/test/java
+
++====================== How Are Intrumentation Test Built ======================+
+
+-> Have their own manifest files
+    -> Generated Automatically
+    -> Can append your own, and they will be integrated automatically
+        -> Ideal if you want different tests for different SDKs
+-> Run with InstrumentationTestRunner
+    -> Starts Android Process
+    -> Invokes onCreate
+
++====================== Create A New Intrumentation Test ======================+
+
+-> To Create :
+    -> Create a new Java Class in androidTest directory
+        -> Trick : To create a test for build variant, make a folder named androidTestVariantName and add your test
+        there
+-> Or navigate to the class you want to test and press ctrl+shift+T
+
++====================== Inside the Intrumentation Test ======================+
+
+Inside the test
+    -> Annotate with @RunWith(AndroidJUnit4.class)
+        -> An extension of the JUnit with Android goodness
+    -> Create a @Rule annotated ActivityTestRule to get access to an Activity
+        -> Eg :
+            @Rule
+            public ActivityTestRule<SearchPlantsActivity> mActivityRule =
+            new ActivityTestRule<>(SearchPlantsActivity.class);
+
+    -> mActivityRule.getActivity() : returns the activity specified in the @Rule annotation
+        -> Can access any non-private methods  you'd like, as a part of your tests
 
 
 

@@ -48,6 +48,9 @@ public class MockedServerBDDTestPlantDAO {
     public void setupMockedTests() throws IOException {
         server = MockWebServerUtils.startNewServer();
         baseUrl = server.url("api/plants");
+        System.out.println("#==============================================#");
+        System.out.println("# Mock Server URL : " + baseUrl.toString() + " #");
+        System.out.println("#==============================================#");
     }
     // endregion
 
@@ -93,6 +96,7 @@ public class MockedServerBDDTestPlantDAO {
 
     // region Givens
     private void givenPlantDAOIsInitialised() {
+
         plantDAO = new PlantDAO(baseUrl.toString());
     }
     // endregion

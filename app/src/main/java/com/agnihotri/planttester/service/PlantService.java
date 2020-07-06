@@ -17,8 +17,16 @@ public class PlantService implements IPlantService {
 
     public PlantService(){
 //        plantDAO = new PlantJsonDAO();
-        plantDAO = new PlantDAOStub();
-//        plantDAO = new PlantDAO();
+//        plantDAO = new PlantDAOStub();
+        plantDAO = new PlantDAO();
+    }
+
+    public IPlantDAO getPlantDAO(){
+        return plantDAO;
+    }
+
+    public void setPlantDAO(IPlantDAO plantDAO){
+        this.plantDAO = plantDAO;
     }
 
     @Override

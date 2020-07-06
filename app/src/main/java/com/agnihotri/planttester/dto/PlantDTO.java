@@ -72,11 +72,14 @@ public class PlantDTO {
     }
 
     public String toString(){
-        StringBuffer stringBuffer = new StringBuffer("Plant id : ").append(guid);
-        stringBuffer.append(", genus : ").append(genus);
-        stringBuffer.append(", species : ").append(species);
-        stringBuffer.append(", cultivar : ").append(cultivar);
-        stringBuffer.append(", common name : ").append(commonName);
+//        StringBuffer stringBuffer = new StringBuffer("Plant id : ").append(guid);
+//        stringBuffer.append(", genus : ").append(genus);
+//        stringBuffer.append(", species : ").append(species);
+//        stringBuffer.append(", cultivar : ").append(cultivar);
+//        stringBuffer.append(", common name : ").append(commonName);
+
+        StringBuffer stringBuffer = new StringBuffer("Common Name : ").append(commonName);
+        stringBuffer.append(", Scientific Name : ").append(scientificName);
 
         return stringBuffer.toString();
     }

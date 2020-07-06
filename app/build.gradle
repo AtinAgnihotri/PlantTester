@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "com.agnihotri.planttester.MockUtils.MockTestRunner"
 
 
     }
@@ -30,6 +31,7 @@ android {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 }
@@ -61,6 +63,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
     androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.madgag.spongycastle:bctls-jdk15on:1.58.0.0'
+    androidTestImplementation 'com.madgag.spongycastle:core:1.58.0.0'
+
+
 
 }
 

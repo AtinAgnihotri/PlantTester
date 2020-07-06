@@ -3,6 +3,7 @@ package com.agnihotri.planttester.dao;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.StrictMode;
 
 import com.agnihotri.planttester.dto.PlantDTO;
 
@@ -23,7 +24,9 @@ public class PlantDAO extends Activity implements IPlantDAO  {
     String apiToken = "YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09";
 
     public PlantDAO() {
-        this("https://trefle.io/api/plants");
+        this(BaseUrl.getBaseUrl());
+        String baseUrl = BaseUrl.getBaseUrl();
+        System.out.println("# Base URL :" + baseUrl + " #");
     }
 
     public PlantDAO(String url) {
@@ -31,15 +34,25 @@ public class PlantDAO extends Activity implements IPlantDAO  {
         setNetworkDAO(new NetworkDAO());
     }
 
+    public String getBaseUrl(){
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String url){
+        baseUrl = url;
+    }
+
     @Override
     public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException {
+
         filter = filter.replace(" ", "%20");
         ArrayList<PlantDTO> allPlants = new ArrayList<PlantDTO>();
 
 
         String requestURI = baseUrl + "?q=" + filter + "&token=" + apiToken;
-
+        System.out.println("# REQUEST URL : " + requestURI + " #");
         String requestResponse = getNetworkDAO().fetch(requestURI);
+        System.out.println("# REQUEST RESPONSE : " + requestResponse + " #");
 
         // Entire JSON Array
         JSONArray plants = new JSONArray(requestResponse);

@@ -6,26 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".SearchPlantsActivity">
 
+    <!--        app:layout_constraintTop_toBottomOf="@+id/actPlantName" />-->
+
     <AutoCompleteTextView
         android:id="@+id/actPlantName"
         android:layout_width="403dp"
         android:layout_height="64dp"
         android:layout_marginTop="28dp"
         android:hint="Plant Name"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchPlant"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.174" />
 
     <Button
         android:id="@+id/btnSearchPlant"
         android:layout_width="213dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
         android:onClick="searchPlants"
         android:text="@android:string/search_go"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintTop_toBottomOf="@id/actPlantName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actPlantName" />
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ListView
+        android:id="@+id/lstPlants"
+        android:layout_width="412dp"
+        android:layout_height="489dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchPlant" />
+
+    <!--    <AutoCompleteTextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/btnSearchPlant"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:id="@+id/actPlantName"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:hint="Plant Name" />-->
+
+<!--    <Button-->
+<!--        android:text="Show Plant"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@+id/actPlantName"-->
+<!--        android:layout_below="@+id/actPlantName"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:id="@+id/btnSearchPlant"-->
+<!--        android:onClick="searchPlants" />-->
+
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/btnSearchPlant"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:id="@+id/lstPlants" />-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
