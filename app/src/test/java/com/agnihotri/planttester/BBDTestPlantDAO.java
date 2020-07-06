@@ -53,9 +53,13 @@ public class BBDTestPlantDAO {
     @Before
     public void initialiseMocks() throws IOException {
         when(networkDAO.fetch(MockedUrls.REDBUD_QUERRY)).thenReturn(MockJsonStrings.REDBUD_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.MOCK_REDBUD_QUERRY)).thenReturn(MockJsonStrings.REDBUD_JSON_STRING);
         when(networkDAO.fetch(MockedUrls.HYBRID_OAK_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.MOCK_HYBRID_OAK_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
         when(networkDAO.fetch(MockedUrls.GARBAGE_VALUE_QUERRY)).thenReturn(MockJsonStrings.GARBAGE_VALUE_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.MOCK_GARBAGE_VALUE_QUERRY)).thenReturn(MockJsonStrings.GARBAGE_VALUE_JSON_STRING);
         when(networkDAO.fetch(MockedUrls.QUERCUS_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
+        when(networkDAO.fetch(MockedUrls.MOCK_QUERCUS_QUERRY)).thenReturn(MockJsonStrings.HYBRID_OAK_JSON_STRING);
     }
 
     // region Tests
