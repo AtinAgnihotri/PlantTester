@@ -55,7 +55,8 @@ public class PlantDAO extends Activity implements IPlantDAO  {
         System.out.println("# REQUEST RESPONSE : " + requestResponse + " #");
 
         // Entire JSON Array
-        JSONArray plants = new JSONArray(requestResponse);
+        JSONObject returnJsonObject = new JSONObject(requestResponse);
+        JSONArray plants = returnJsonObject.getJSONArray("data");
 
         for (int i = 0; i < plants.length(); i++) {
             // this guy right here represents an individual plant.

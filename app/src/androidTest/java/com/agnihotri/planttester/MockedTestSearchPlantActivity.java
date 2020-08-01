@@ -49,7 +49,7 @@ public class MockedTestSearchPlantActivity {
     @Before
     public void setupMockedTests() throws IOException, GeneralSecurityException {
         server = MockWebServerUtils.startNewServer();
-        baseUrl = server.url("api/plants");
+        baseUrl = server.url("api/v1/plants");
         BaseUrl.setBaseUrl(baseUrl.toString());
         System.out.println("# URL Base : " +  BaseUrl.getBaseUrl() + " #");
 
