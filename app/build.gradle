@@ -5,7 +5,15 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            if(file("./src/res/values/specialfile.txt").exists()){
+            if(file("/bitrise/src/app/configKeystore.jks").exists()){
+                storeFile file("/bitrise/src/app/configKeystore.jks")
+                storePassword "$System.env.BITRISEIO_ANDROID_KEYSTORE_PASSWORD"
+                keyAlias "$System.env.BITRISEIO_ANDROID_KEYSTORE_ALIAS"
+                keyPassword "$System.env.BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD"
+                
+            } else {
+
+
                 def keystorePropertiesFile = rootProject.file("keystore.properties")
 
                 def keystoreProperties = new Properties()
@@ -15,12 +23,6 @@ android {
                 storePassword keystoreProperties['storePassword']
                 keyAlias keystoreProperties['keyAlias']
                 keyPassword keystoreProperties['keyPassword']
-            } else {
-
-                storeFile file("$System.env.BITRISEIO_ANDROID_KEYSTORE_URL")
-                storePassword "$System.env.BITRISEIO_ANDROID_KEYSTORE_PASSWORD"
-                keyAlias "$System.env.BITRISEIO_ANDROID_KEYSTORE_ALIAS"
-                keyPassword "$System.env.BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD"
             }
 
         }
