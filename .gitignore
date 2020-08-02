@@ -14,3 +14,5 @@
 .cxx
 *jks
 *keystore.properties
+bitrise.yml
+.bitrise.secrets.yml
