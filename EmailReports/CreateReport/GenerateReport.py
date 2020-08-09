@@ -13,7 +13,8 @@ importlib.reload(GRD)
 importlib.reload(PTB)
 importlib.reload(HTMLB)
 
-class WriteReport:
+class GenerateReport:
+    # region Initialisation
     def __init__(self):
         self.__initialiseClasses()
         self.__initialiseVariables()
@@ -29,8 +30,9 @@ class WriteReport:
         self.__resultReader = GRD.GatherResultsData()
         self.__plainTextBuilder = PTB.PlainTextBuilder()
         self.__htmlBuilder = HTMLB.HTMLBuilder()
+    # endregion
 
-    def writeReportsForLogCats(self, xmlPath, listOfLogcatPaths):
+    def generateReport(self, xmlPath, listOfLogcatPaths):
         self.__gatherTestArtifacts(xmlPath, listOfLogcatPaths)
         self.__generateEmailBody()
         return self.__emailBody
