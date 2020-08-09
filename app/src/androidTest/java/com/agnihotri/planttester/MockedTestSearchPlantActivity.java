@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
 import com.agnihotri.planttester.MockUtils.MockWebServerUtils;
+import com.agnihotri.planttester.UiUtils.LogUITest;
 import com.agnihotri.planttester.dao.BaseUrl;
 import com.agnihotri.planttester.dao.IPlantDAO;
 import com.agnihotri.planttester.dao.PlantDAO;
@@ -58,8 +59,10 @@ public class MockedTestSearchPlantActivity {
     @Test
     public void testSearchPlantActivity_searchingRedbudReturnsAtLeastTwoResults(){
 //        givenPlantDAOBaseURLPointingToMockWebServer();
+//        LogUITest.startLogging("testSearchPlantActivity_searchingRedbudReturnsAtLeastTwoResults");
         whenUserSearchesForRedbud();
         thenVerifyAtLeastTwoRedbudResultsInList();
+//        LogUITest.stopLogging();
 //        onView(withId(R.id.actPlantName)).perform(typeText("Redbud"));
         // Click the search button
 //        onView(withId(R.id.btnSearchPlant)).perform(click());
@@ -74,14 +77,19 @@ public class MockedTestSearchPlantActivity {
     public void whenUserSearchesForRedbud(){
         onView(withId(R.id.actPlantName)).perform(typeText("Redbud"));
         // Click the search button
+        LogUITest.info("Redbud Typed in Search Line Edit");
         onView(withId(R.id.btnSearchPlant)).perform(click());
+        LogUITest.info("Search Button clicked");
         // On View
-        onView(withText("Common Name : middle eastern redbud, Scientific Name : Cercis canadensis"));
-        onView(withText("Common Name : Japanese redbud, Scientific Name : Cercis chinensis"));
+
     }
 
     public void thenVerifyAtLeastTwoRedbudResultsInList(){
 //        assertTrue();
+        onView(withText("Common Name : middle eastern redbud, Scientific Name : Cercis canadensis"));
+        LogUITest.info("Middle Eastern Redbud Found");
+        onView(withText("Common Name : Japanese redbud, Scientific Name : Cercis chinensis"));
+        LogUITest.info("Japanese Redbud Found");
     }
 
     @After
