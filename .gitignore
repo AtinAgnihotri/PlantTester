@@ -8,6 +8,8 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+*/__pycache__/*
+*.pyc
 .DS_Store
 /build
 /captures
