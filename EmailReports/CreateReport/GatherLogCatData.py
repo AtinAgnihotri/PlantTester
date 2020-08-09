@@ -2,13 +2,17 @@
 Gathers report data from a given logcat
 '''
 import os
-import yaml
+import importlib
+from CreateReport import TestCases
+importlib.reload(TestCases)
+# import yaml
 
 class GatherLogCatData:
     # region Initialisation
     def __init__(self):
         self.__initialiseVariables()
-        self.__loadYamlData()
+        # self.__loadYamlData()
+        self.__loadTestCaseData()
 
     def __initialiseVariables(self, loadingClass=True):
         '''
@@ -24,17 +28,20 @@ class GatherLogCatData:
         if loadingClass:
             self.__testCases = {}
 
-    def __loadYamlData(self):
-        '''
-        Reads and initialise testCases dictionary by reading the testCases YAML file
-        :return: None
-        '''
-        yamlFile = os.path.join(
-            os.path.dirname(__file__),
-            'testCases.yml'
-        ).replace('\\','/')
-        with open(yamlFile, 'r') as f:
-            self.__testCases = yaml.load(f, Loader=yaml.BaseLoader)
+    # def __loadYamlData(self):
+    #     '''
+    #     Reads and initialise testCases dictionary by reading the testCases YAML file
+    #     :return: None
+    #     '''
+    #     yamlFile = os.path.join(
+    #         os.path.dirname(__file__),
+    #         'testCases.yml'
+    #     ).replace('\\','/')
+    #     with open(yamlFile, 'r') as f:
+    #         self.__testCases = yaml.load(f, Loader=yaml.BaseLoader)
+
+    def __loadTestCaseData(self):
+        self.__testCases = TestCases.TEST_CASES
     # endregion
 
     # region Helper Methods
