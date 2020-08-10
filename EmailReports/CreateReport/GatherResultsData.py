@@ -1,8 +1,9 @@
 '''
 Gets the Data from Test Results XML file
 '''
-
+# region Imports
 import xml.etree.cElementTree as ET
+# endregion
 
 class GatherResultsData:
     # region Initialisation
