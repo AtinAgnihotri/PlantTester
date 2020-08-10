@@ -72,7 +72,7 @@ class ReportHandler:
         Gets the Test Artifacts directory pulled from Device Testing step
         :return: None
         '''
-        self.__testArtifactsDir = str(os.environ['$VDTESTING_DOWNLOADED_FILES_DIR'])
+        self.__testArtifactsDir = str(os.environ['VDTESTING_DOWNLOADED_FILES_DIR'])
 
     # endregion
 
