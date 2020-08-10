@@ -93,6 +93,7 @@ class GenerateReport:
         Generates the HTML and PlainText Body for the Report Email
         :return: None
         '''
+        self.__gatherBuildInfo()
         currentTime = self.__getCurrentTimeString()
         self.__emailBody['text'] = self.__plainTextBuilder.buildTextBlock(self.__buildSlug, currentTime,
                                                                           self.__resultsDict, self.__logCatDict)

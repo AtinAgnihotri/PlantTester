@@ -31,7 +31,7 @@ class ReportHandler:
     def __initialiseVariables(self):
         self.__listOfLogCatPaths = []
         self.__reportData = ''
-        self.__resultsXmlPattern = r'[a-zA-Z1-9-]+_(test_result)_\d(\.xml)'
+        self.__resultsXmlPattern = r'[a-zA-Z1-9-]+(_test_result_)\d(\.xml)'
         self.__testCaseLogcatPattern = r'[a-zA-Z1-9-]+(_test_cases_)\d{4}(_logcat)'
     # endregion
 

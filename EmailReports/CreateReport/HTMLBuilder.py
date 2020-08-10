@@ -23,7 +23,6 @@ class HTMLBuilder:
         html += '<style>\n'
         html += 'table, th, td {\n'
         html += '  border: 1px solid black;\n'
-        html += '  border-collapse: collapse;\n'
         html += '}\n'
         html += '</style>\n'
         html += '{TITLE_OF_REPORT}\n'
@@ -40,11 +39,7 @@ class HTMLBuilder:
         :return: HTML String for Title
         '''
         html = '<h1>\n'
-        html += '<font style="color:blue>\n'
-        html += '<center>\n'
         html += 'PlantTester : App Test Results\n'
-        html += '</center>\n'
-        html += '</font>\n'
         html += '</h1>\n'
         return html
 
@@ -74,22 +69,17 @@ class HTMLBuilder:
         '''
         html = '<br>\n'
         html += '<center>\n'
-        html += '<table style="width:25%>"\n'
-        html += '<th colspan="2"><bold>Test Results</bold><th>\n'
+        html += '<table style="width:25%", border="1">\n'
+        html += '<th colspan="2"><bold>Test Results</bold></th>\n'
         for eachKey in resultsDict.keys():
             eachItem = str(eachKey)
             eachValue = str(resultsDict[eachKey])
             html += '<tr>\n'
-            if eachItem in ('Errors', 'Failures', 'Skipped'):
-                html += '<font style="color:red">\n'
-            else:
-                html += '<font style="color:yellow">\n'
             html += '<td>' + eachItem + '</td>\n'
             html += '<td>' + eachValue + '</td>\n'
-            html += '</font>\n'
             html += '</tr>\n'
+        html += '</table>\n'
         html += '</center>\n'
-        html += '</table>"\n'
         return html
 
     def __buildTestTables(self, logCatDict):
@@ -107,22 +97,22 @@ class HTMLBuilder:
 
         for eachCase in logCatDict.keys():
             eachCaseName = str(eachCase)
-            html += '<table style="width:50%>"\n'
-            html += '<th colspan="2"><bold>'+ eachCaseName +'</bold><th>\n'
+            html += '<table style="width:50%", border="1">\n'
+            html += '<th colspan="2"><bold>'+ eachCaseName +'</bold></th>\n'
             i = 1
             for eachStep in logCatDict[eachCase]:
                 eachStepStr = str(eachStep)
                 html += '<tr>\n'
                 if 'ERROR' in eachStepStr:
                     html += '<font style="color:red">\n'
-                html += '<td>' + str(i) + '</td>\n'
+                html += '<td>' + str(i) + '.</td>\n'
                 html += '<td>' + eachStepStr + '</td>\n'
                 if 'ERROR' in eachStepStr:
                     html += '</font>\n'
                 html += '</tr>\n'
                 i += 1
-            html += '</table>"\n'
-            html += '<br>"\n'
+            html += '</table>\n'
+            html += '<br>\n'
 
         return html
     # endregion
