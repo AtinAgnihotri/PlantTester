@@ -66,12 +66,12 @@ class GatherLogCatData:
         class object, gets the report title, reads the Logcat for UI test steps and
         returns a Test Title and Steps in the Test
         :param filePath: Path of the logcat file
-        :return: A dict of Report Title and Steps involved
+        :return: Test Title String, List of Step strings for Test Case
         '''
         self.__initialiseVariables(loadingClass=False)
         self.__filePath = filePath
         self.__getReportTitle()
         self.__readLogCat()
 
-        return {self.__reportTitle: self.__steps}
+        return self.__reportTitle, self.__steps
 
