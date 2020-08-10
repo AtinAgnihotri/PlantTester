@@ -29,6 +29,9 @@ class HTMLBuilder:
         html += '{CUMULATIVE_RESULTS_TABLE}\n'
         html += '{INFO_ON_REPORT}\n'
         html += '{TEST_TABLES}\n'
+        html += '<br>\n'
+        html += 'Regards,<br>\n'
+        html += 'Atin Agnihotri\n'
         html += '</body>\n'
         html += '</html>\n'
         return html
