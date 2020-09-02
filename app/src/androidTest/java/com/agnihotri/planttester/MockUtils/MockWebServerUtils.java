@@ -25,9 +25,9 @@ public class MockWebServerUtils {
         public MockResponse dispatch (RecordedRequest request) throws InterruptedException {
             System.out.println("# Request Path : "+ request.getPath() + " #");
             switch (request.getPath()) {
-                case "/api/v1/plants?q=Redbud&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
+                case "/api/v1/plants/search?q=Redbud&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
                     return new MockResponse().setBody(getRedBudJsonString()).setResponseCode(200);
-                case "/api/v1/plants?q=hybrid%20oak&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
+                case "/api/v1/plants/search?q=hybrid%20oak&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
                     return new MockResponse().setBody(getHybridOakJsonString()).setResponseCode(200);
 //                case "api/v1/plants?q=asdhagljkdfhbjgnn&token=YmFCYmNWU0k4WG14TFZBVGpRTFJLdz09":
 //                    return new MockResponse().setResponseCode(200).setBody("{\\\"info\\\":{\\\"name\":\"Lucas Albuquerque\",\"age\":\"21\",\"gender\":\"male\"}}");

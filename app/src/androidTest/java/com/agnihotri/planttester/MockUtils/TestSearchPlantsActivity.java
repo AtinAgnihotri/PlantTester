@@ -14,7 +14,7 @@ public class TestSearchPlantsActivity extends SearchPlantsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IPlantDAO plantDAO = new PlantDAO("http://127.0.0.1:8080/api/plants");
+        IPlantDAO plantDAO = new PlantDAO("http://127.0.0.1:8080/api/plants/search");
         PlantService newPlantService = new PlantService();
         newPlantService.setPlantDAO(plantDAO);
         setPlantService(newPlantService);

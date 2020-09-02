@@ -19,3 +19,4 @@
 *keystore.properties
 bitrise.yml
 .bitrise.secrets.yml
+*/.idea

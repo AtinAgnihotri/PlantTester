@@ -47,7 +47,7 @@ public class MockedServerBDDTestPlantDAO {
     @Before
     public void setupMockedTests() throws IOException {
         server = MockWebServerUtils.startNewServer();
-        baseUrl = server.url("api/plants");
+        baseUrl = server.url("api/plants/search");
         System.out.println("#==============================================#");
         System.out.println("# Mock Server URL : " + baseUrl.toString() + " #");
         System.out.println("#==============================================#");

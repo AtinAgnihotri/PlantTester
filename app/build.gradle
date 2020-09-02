@@ -20,6 +20,7 @@ android {
 
                 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
                 if (file(keystoreProperties['storeFile']).exists()) {
+                    // Takes from here
                     storeFile file(keystoreProperties['storeFile'])
                 } else {
                     storeFile file(keystoreProperties['wslStoreFile'])

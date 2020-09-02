@@ -74,14 +74,17 @@ public class SearchPlantsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<PlantDTO> plantDTOS) {
+
             ArrayAdapter<PlantDTO> plantDTOArrayAdapter =
                     new ArrayAdapter<PlantDTO>(SearchPlantsActivity.this, android.R.layout.simple_list_item_1, plants);
             lstPlants.setAdapter(plantDTOArrayAdapter);
             setPlants(plants);
+
         }
 
         @Override
         protected List<PlantDTO> doInBackground(String... params) {
+
 //            System.out.println("#==================================#");
 //            System.out.println("#=========  param :" + params[0].toString() + " =======#");
 //            System.out.println("#==================================#");
@@ -106,6 +109,7 @@ public class SearchPlantsActivity extends AppCompatActivity {
                     System.out.println("#=========  " + plant.toString() +  "  =======#");
                     System.out.println("#==================================#");
                 }
+
             }
 
             return plants;

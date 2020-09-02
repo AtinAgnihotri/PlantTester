@@ -57,6 +57,9 @@ public class PlantDAO extends Activity implements IPlantDAO  {
         // Entire JSON Array
         JSONObject returnJsonObject = new JSONObject(requestResponse);
         JSONArray plants = returnJsonObject.getJSONArray("data");
+        System.out.println("#==================================#");
+        System.out.println("#=========  " + plants.toString() +  "  =======#");
+        System.out.println("#==================================#");
 
         for (int i = 0; i < plants.length(); i++) {
             // this guy right here represents an individual plant.
@@ -64,7 +67,7 @@ public class PlantDAO extends Activity implements IPlantDAO  {
                 JSONObject jsonObject = plants.getJSONObject(i);
                 int id = jsonObject.getInt("id");
                 String scientificName = jsonObject.getString("scientific_name");
-                String link = jsonObject.getString("link");
+//                String link = jsonObject.getString("link");
                 String slug = jsonObject.getString("slug");
                 String[] slugTokens = slug.split("-");
                 String genus = slugTokens[0];
@@ -81,14 +84,18 @@ public class PlantDAO extends Activity implements IPlantDAO  {
                 plantDTO.setSpecies(species);
                 //            plantDTO.setCultivar(cultivar);
                 plantDTO.setCommonName(commonName);
-                plantDTO.setLink(link);
+//                plantDTO.setLink(link);
                 plantDTO.setSlug(slug);
                 plantDTO.setScientificName(scientificName);
+                System.out.println("#==================================#");
+                System.out.println("#=========  " + plantDTO.toString() +  "  =======#");
+                System.out.println("#==================================#");
 
                 // add this plant to the collection.
                 allPlants.add(plantDTO);
 //                System.out.println("Common Name : " + commonName );
             } catch (Exception e) {
+                e.printStackTrace();
                 continue;
             }
         }
